@@ -54,20 +54,25 @@ const validatejwt = (req, res, next) => {
 
 app.post('/signup', (req, res) => {
 	console.log(req);
-	res.status(200).json({res : "ok", msg : ""});
+	res.status(200).json({err : false, msg : ""});
 });
 
 app.post('/signin', (req, res) => {
 	console.log(req);
-	res.status(200).json({res : "ok", msg : ""});
+	res.status(200).json({err : false, msg : ""});
 });
 
 app.post('/getProfile', validatejwt, (req, res) => {
-	console.log(req);
-	res.status(200).json({res : "ok", msg : ""});	
+	conn.query('SELECT fullname, balance FROM Users WHERE email = ?', [req.userdata.email], (err, rows, fields) => {
+	  if (err) {
+	  	throw err;	
+	  }
+	  console.log(rows);
+	  res.status(200).json({err : false});
+	});	
 });
 
 app.use((err, req, res, next) => {
   console.log(err);
-  res.status(501).json({res : false, msg : "something went wrong, check server logs"});
+  res.status(501).json({err : true, msg : "something went wrong, check server logs"});
 });
