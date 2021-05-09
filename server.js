@@ -4,6 +4,8 @@ const app = require('express')();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const mysql = require('mysql');
+const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
 
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -14,6 +16,14 @@ const conn = mysql.createConnection({
 	user: process.env.MYSQL_USERNAME,
 	password: process.env.MYSQL_PASSWORD,
 	database: process.env.MYSQL_DATABASE	
+});
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.PAYSA_USER,
+    pass: process.env.PAYSA_PASS
+  }
 });
 
 conn.connect();
@@ -32,7 +42,32 @@ app.listen(process.env.PORT, (err) => {
   console.log(`Listening on port ${process.env.PORT}`);
 });
 
-app.use(function (err, req, res, next) {
+const validatejwt = (req, res, next) => {
+	try {
+	  let decoded = jwt.verify(req.cookies.token, process.env.JWT_SECRET);
+	  req.userdata.email = decoded.email;
+	} catch(err) {
+	  throw err;
+	}	
+	next();
+}
+
+app.post('/signup', (req, res) => {
+	console.log(req);
+	res.status(200).json({res : "ok", msg : ""});
+});
+
+app.post('/signin', (req, res) => {
+	console.log(req);
+	res.status(200).json({res : "ok", msg : ""});
+});
+
+app.post('/getProfile', validatejwt, (req, res) => {
+	console.log(req);
+	res.status(200).json({res : "ok", msg : ""});	
+});
+
+app.use((err, req, res, next) => {
   console.log(err);
-  res.status(501).json({"res" : false, "msg" : "something went wrong, check server logs"});
+  res.status(501).json({res : false, msg : "something went wrong, check server logs"});
 });
