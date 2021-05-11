@@ -1,0 +1,4 @@
+#323b51	
+
+green: #00d075
+dark_green: #3b9291
