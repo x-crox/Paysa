@@ -35,8 +35,8 @@ public class Sign_up extends Fragment implements View.OnClickListener {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    NeumorphButton done;
-    EditText username;
+    NeumorphButton done,otp_send;
+    EditText _email,_fullname,_password,_otp;
     Button cancel;
     public Sign_up() {
         // Required empty public constructor
@@ -74,12 +74,16 @@ public class Sign_up extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View frag = inflater.inflate(R.layout.fragment_sign_up, container, false);
-        username=frag.findViewById(R.id.new_username);
-
+        _email=frag.findViewById(R.id.new_username);
+        otp_send=frag.findViewById(R.id.otp_send);
+        _fullname=frag.findViewById(R.id.fullname);
+        _password=frag.findViewById(R.id.new_password);
+        _otp=frag.findViewById(R.id.otp);
         done=frag.findViewById(R.id.done);
         cancel=frag.findViewById(R.id.cancel);
         done.setOnClickListener(this::onClick);
         cancel.setOnClickListener(this::onClick);
+        otp_send.setOnClickListener(this::onClick);
         return frag;
     }
 
@@ -87,84 +91,165 @@ public class Sign_up extends Fragment implements View.OnClickListener {
     public void onClick(View v){
         FragmentManager manager=getActivity().getSupportFragmentManager();
 
-        if(v.getId()==R.id.done){
-            System.out.println("done");
-            Toast.makeText(this.getContext(),"done clicked",Toast.LENGTH_SHORT).show();
-            //add the data to the database
-            try {
-                // signup
-                /*
-                    {
-                        email: String
+        String email = _email.getText().toString();
+        String fullname = _fullname.getText().toString();
+        String password = _password.getText().toString();
+        switch(v.getId()){
+            case R.id.otp_send:
+                System.out.println("done");
+                Toast.makeText(this.getContext(),"done clicked",Toast.LENGTH_SHORT).show();
+                //add the data to the database
+                try {
+                    // signup
+                    /*
+                        {
+                            email: String
+                        }
+                    */
+//                    String email = username.getText().toString();
+                    JSONObject jo = new JSONObject();
+
+                    // add simple attributes like string or integer
+                    jo.put("email", email);
+                    String jsonData = JSONValue.toJSONString(jo);
+
+                    // setup to make JSON POST request
+                    String url = "http://15.207.249.112:8000/signup";
+                    URL obj = new URL(url);
+                    HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+                    // start sending
+                    con.setRequestMethod("POST");
+                    con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+                    con.setRequestProperty("Content-Type","application/json");
+                    con.setDoOutput(true);
+                    DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+                    wr.writeBytes(jsonData);
+                    wr.flush();
+                    wr.close();
+
+                    // read the response body
+                    BufferedReader in = new BufferedReader(
+                            new InputStreamReader(con.getInputStream()));
+                    String output;
+                    StringBuffer response = new StringBuffer();
+                    while ((output = in.readLine()) != null) {
+                        response.append(output);
                     }
-                 */
-                String email = username.getText().toString();
+                    in.close();
 
-                JSONObject jo = new JSONObject();
+                    // parse JSON response sent by server
+                    System.out.println(response.toString());
+                    Object object = JSONValue.parse(response.toString());
+                    JSONObject jsonObject = (JSONObject) object;
 
-                // add simple attributes like string or integer
-                jo.put("email", email);
-                String jsonData = JSONValue.toJSONString(jo);
+                    // refer the response received, the type should be infered from the response
+                    /*
 
-                // setup to make JSON POST request
-                String url = "http://15.207.249.112:8000/signup";
-                URL obj = new URL(url);
-                HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+                        {
+                            err: Boolean
+                            msg: String
+                        }
+                    */
+                    Boolean err = (Boolean) jsonObject.get("err");
+                    String msg = (String) jsonObject.get("msg");
 
-                // start sending
-                con.setRequestMethod("POST");
-                con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
-                con.setRequestProperty("Content-Type","application/json");
-                con.setDoOutput(true);
-                DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-                wr.writeBytes(jsonData);
-                wr.flush();
-                wr.close();
 
-                // read the response body
-                BufferedReader in = new BufferedReader(
-                        new InputStreamReader(con.getInputStream()));
-                String output;
-                StringBuffer response = new StringBuffer();
-                while ((output = in.readLine()) != null) {
-                    response.append(output);
-                }
-                in.close();
-
-                // parse JSON response sent by server
-                System.out.println(response.toString());
-                Object object = JSONValue.parse(response.toString());
-                JSONObject jsonObject = (JSONObject) object;
-
-                // refer the response received, the type should be infered from the response
-                /*
-
-                    {
-                        err: Boolean
-                        msg: String
+                    if (err == false) {
+                        //
+                        Toast.makeText(this.getContext(),"OTP sent to your email",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this.getContext(),msg,Toast.LENGTH_SHORT).show();
                     }
-                */
-                Boolean err = (Boolean) jsonObject.get("err");
-                String msg = (String) jsonObject.get("msg");
 
+                } catch (Exception e) {
 
-                if (err == false) {
-                    //
-                    Toast.makeText(this.getContext(),"OTP sent to your email",Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this.getContext(),"Failed",Toast.LENGTH_SHORT).show();
                 }
 
-            } catch (Exception e) {
 
-            }
+                //Toast.makeText(this.getContext(),"Account created",Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.done:
+                try {
+                    // verifyOTP
+                    /*
+                        {
+                            email: String
+                            fullname: String
+                            password: String
+                            otp: String
+                        }
+                    */
+//                    String email = username.getText().toString();
+                    JSONObject jo = new JSONObject();
+
+                    // add simple attributes like string or integer
+                    String otp = _otp.getText().toString();
+                    jo.put("email", email);
+                    jo.put("fullname", fullname);
+                    jo.put("password", password);
+                    jo.put("otp", otp);
+                    String jsonData = JSONValue.toJSONString(jo);
+
+                    // setup to make JSON POST request
+                    String url = "http://15.207.249.112:8000/verifyOTP";
+                    URL obj = new URL(url);
+                    HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+                    // start sending
+                    con.setRequestMethod("POST");
+                    con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+                    con.setRequestProperty("Content-Type","application/json");
+                    con.setDoOutput(true);
+                    DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+                    wr.writeBytes(jsonData);
+                    wr.flush();
+                    wr.close();
+
+                    // read the response body
+                    BufferedReader in = new BufferedReader(
+                            new InputStreamReader(con.getInputStream()));
+                    String output;
+                    StringBuffer response = new StringBuffer();
+                    while ((output = in.readLine()) != null) {
+                        response.append(output);
+                    }
+                    in.close();
+
+                    // parse JSON response sent by server
+                    System.out.println(response.toString());
+                    Object object = JSONValue.parse(response.toString());
+                    JSONObject jsonObject = (JSONObject) object;
+
+                    // refer the response received, the type should be infered from the response
+                    /*
+
+                        {
+                            err: Boolean
+                            msg: String
+                        }
+                    */
+                    Boolean err = (Boolean) jsonObject.get("err");
+                    String msg = (String) jsonObject.get("msg");
 
 
+                    if (err == false) {
+                        //
+                        Toast.makeText(this.getContext(),"Success",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this.getContext(),msg,Toast.LENGTH_SHORT).show();
+                    }
 
-            Toast.makeText(this.getContext(),"Account created",Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+
+                }
+                break;
         }
 
-        manager.beginTransaction().replace(R.id.main_activity,new Sign_in()).commit();
+        if(v.getId()!=R.id.otp_send){
+            manager.beginTransaction().replace(R.id.main_activity,new Sign_in()).commit();
+        }
 
     }
 }

@@ -13,9 +13,10 @@
         android:layout_height="75dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.766"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.541">
+        app:layout_constraintVertical_bias="0.532">
 
         <EditText
             android:id="@+id/otp"
@@ -23,13 +24,30 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center"
-            android:hint="OTP"
-            android:textColorHint="@color/hint_color"
             android:inputType="textPersonName"
             android:textColor="@color/actual_green"
-            tools:layout_editor_absoluteX="63dp"
-            tools:layout_editor_absoluteY="427dp" />
+            tools:layout_editor_absoluteX="181dp"
+            tools:layout_editor_absoluteY="362dp" />
     </soup.neumorphism.NeumorphCardView>
+
+    <soup.neumorphism.NeumorphButton
+        android:id="@+id/otp_send"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="OTP"
+        android:textAlignment="center"
+        android:textColor="@color/actual_green"
+        android:textFontWeight="900"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.166"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.532">
+
+    </soup.neumorphism.NeumorphButton>
 
     <soup.neumorphism.NeumorphCardView
         android:layout_width="335dp"
@@ -47,7 +65,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center"
-            android:hint="Enter new username"
+            android:hint="Enter new email"
             android:textColorHint="@color/hint_color"
             android:inputType="textPersonName"
             android:textColor="@color/actual_green"
@@ -94,10 +112,10 @@
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.868" />
+        app:layout_constraintVertical_bias="0.871" />
 
     <soup.neumorphism.NeumorphButton
         android:id="@+id/done"
@@ -115,4 +133,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.775" />
+
+
+
+    <soup.neumorphism.NeumorphCardView
+        android:layout_width="335dp"
+        android:layout_height="76dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.077">
+
+        <EditText
+            android:id="@+id/fullname"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:hint="Enter your fullname"
+            android:inputType="textPersonName"
+            android:textColor="@color/actual_green"
+            android:textColorHint="@color/hint_color"
+
+            tools:layout_editor_absoluteX="50dp"
+            tools:layout_editor_absoluteY="63dp" />
+    </soup.neumorphism.NeumorphCardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,18 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import soup.neumorphism.NeumorphButton;
 
@@ -27,7 +39,8 @@ public class Sign_in extends Fragment {
     private String mParam1;
     private String mParam2;
     NeumorphButton signup;
-
+    Button login;
+    EditText username,password;
     public Sign_in() {
         // Required empty public constructor
     }
@@ -66,7 +79,85 @@ public class Sign_in extends Fragment {
         // Inflate the layout for this fragment
         View frag=inflater.inflate(R.layout.fragment_blank, container, false);
         signup=frag.findViewById(R.id.signup);
+        login=frag.findViewById(R.id.login);
+        username=frag.findViewById(R.id.username);
+        password=frag.findViewById(R.id.password);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    // signin
+                    /*
+                        {
+                            email: String
+                            password: String
+                        }
+                    */
+//                    String email = username.getText().toString();
+                    JSONObject jo = new JSONObject();
+                    String email=username.getText().toString();
+                    String _password=password.getText().toString();
+                    // add simple attributes like string or integer
+                    jo.put("email", email);
+                    jo.put("password", _password);
+                    String jsonData = JSONValue.toJSONString(jo);
 
+                    // setup to make JSON POST request
+                    String url = "http://15.207.249.112:8000/signin";
+                    URL obj = new URL(url);
+                    HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+                    // start sending
+                    con.setRequestMethod("POST");
+                    con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+                    con.setRequestProperty("Content-Type","application/json");
+                    con.setDoOutput(true);
+                    DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+                    wr.writeBytes(jsonData);
+                    wr.flush();
+                    wr.close();
+
+                    // read the response body
+                    BufferedReader in = new BufferedReader(
+                            new InputStreamReader(con.getInputStream()));
+                    String output;
+                    StringBuffer response = new StringBuffer();
+                    while ((output = in.readLine()) != null) {
+                        response.append(output);
+                    }
+                    in.close();
+
+                    // parse JSON response sent by server
+                    System.out.println(response.toString());
+                    Object object = JSONValue.parse(response.toString());
+                    JSONObject jsonObject = (JSONObject) object;
+
+                    // refer the response received, the type should be infered from the response
+                    /*
+
+                        {
+                            err: Boolean
+                            auth: Boolean
+                            msg: String
+                        }
+                    */
+                    Boolean err = (Boolean) jsonObject.get("err");
+                    Boolean auth = (Boolean) jsonObject.get("auth");
+                    String msg = (String) jsonObject.get("msg");
+
+
+                    if (auth == true) {
+                        //
+                        Toast.makeText(getContext(),"Success",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+        });
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
