@@ -25,6 +25,8 @@ public class TabAdapter extends FragmentStateAdapter {
                 break;
             case 2: fragment=new groups();
                     break;
+            case 3: fragment= new profile();
+                    break;
             default: fragment=null;
         }
         return fragment;

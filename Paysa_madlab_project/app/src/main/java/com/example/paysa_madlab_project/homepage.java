@@ -33,6 +33,8 @@ public class homepage extends AppCompatActivity {
                     case 1: tab.setText("Income");
                         break;
                     case 2: tab.setText("Groups");
+                        break;
+                    case 3: tab.setText("My Profile");
                 }
             }
         }).attach();
