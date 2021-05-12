@@ -164,9 +164,12 @@ public class Sign_in extends Fragment {
                 Fragment fragment = new Sign_up();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                System.out.print("In sign in activity before replacement");
                 fragmentTransaction.replace(R.id.main_activity, fragment);
+                System.out.print("In sign in activity after replacement");
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
+                System.out.print("In sign in activity before commit");
             }
         });
         return frag;

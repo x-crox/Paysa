@@ -13,10 +13,10 @@
         android:layout_height="75dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.766"
+        app:layout_constraintHorizontal_bias="0.762"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.532">
+        app:layout_constraintVertical_bias="0.618">
 
         <EditText
             android:id="@+id/otp"
@@ -26,8 +26,8 @@
             android:gravity="center"
             android:inputType="textPersonName"
             android:textColor="@color/actual_green"
-            tools:layout_editor_absoluteX="181dp"
-            tools:layout_editor_absoluteY="362dp" />
+            tools:layout_editor_absoluteX="180dp"
+            tools:layout_editor_absoluteY="419dp" />
     </soup.neumorphism.NeumorphCardView>
 
     <soup.neumorphism.NeumorphButton
@@ -42,46 +42,22 @@
         android:textFontWeight="900"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.166"
+        app:layout_constraintHorizontal_bias="0.163"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.532">
+        app:layout_constraintVertical_bias="0.618">
 
     </soup.neumorphism.NeumorphButton>
 
     <soup.neumorphism.NeumorphCardView
-        android:layout_width="335dp"
-        android:layout_height="76dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.203">
-
-        <EditText
-            android:id="@+id/new_username"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:hint="Enter new email"
-            android:textColorHint="@color/hint_color"
-            android:inputType="textPersonName"
-            android:textColor="@color/actual_green"
-
-            />
-
-    </soup.neumorphism.NeumorphCardView>
-
-    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/neumorphCardView3"
         android:layout_width="335dp"
         android:layout_height="76dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.337">
+        app:layout_constraintVertical_bias="0.444">
 
         <EditText
             android:id="@+id/new_password"
@@ -90,11 +66,61 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:hint="Enter new password"
-            android:textColorHint="@color/hint_color"
             android:inputType="textPassword"
             android:textColor="@color/actual_green"
+            android:textColorHint="@color/hint_color"
             tools:layout_editor_absoluteX="60dp"
             tools:layout_editor_absoluteY="315dp" />
+    </soup.neumorphism.NeumorphCardView>
+
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/neumorphCardView2"
+        android:layout_width="335dp"
+        android:layout_height="76dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.309">
+
+        <EditText
+            android:id="@+id/new_username"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:hint="Enter new email"
+            android:inputType="textPersonName"
+            android:textColor="@color/actual_green"
+            android:textColorHint="@color/hint_color"
+
+            />
+
+    </soup.neumorphism.NeumorphCardView>
+
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/neumorphCardView"
+        android:layout_width="335dp"
+        android:layout_height="76dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.183">
+
+        <EditText
+            android:id="@+id/fullname"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:hint="Enter your fullname"
+            android:inputType="textPersonName"
+            android:textColor="@color/actual_green"
+            android:textColorHint="@color/hint_color"
+
+            tools:layout_editor_absoluteX="50dp"
+            tools:layout_editor_absoluteY="63dp" />
     </soup.neumorphism.NeumorphCardView>
 
     <Button
@@ -134,30 +160,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.775" />
 
-
-
-    <soup.neumorphism.NeumorphCardView
-        android:layout_width="335dp"
-        android:layout_height="76dp"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="126dp"
+        android:layout_height="48dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="Sign up"
+        android:textColor="@color/actual_dark_green"
+        android:textFontWeight="1000"
+        android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.077">
+        app:layout_constraintVertical_bias="0.074" />
 
-        <EditText
-            android:id="@+id/fullname"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:hint="Enter your fullname"
-            android:inputType="textPersonName"
-            android:textColor="@color/actual_green"
-            android:textColorHint="@color/hint_color"
-
-            tools:layout_editor_absoluteX="50dp"
-            tools:layout_editor_absoluteY="63dp" />
-    </soup.neumorphism.NeumorphCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
