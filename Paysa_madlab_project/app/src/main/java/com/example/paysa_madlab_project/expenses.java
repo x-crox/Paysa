@@ -8,12 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import soup.neumorphism.NeumorphFloatingActionButton;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link expenses#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class expenses extends Fragment {
+
+
+    NeumorphFloatingActionButton b;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,6 +64,22 @@ public class expenses extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_expenses, container, false);
+        View frag= inflater.inflate(R.layout.fragment_income, container, false);
+
+        b=frag.findViewById(R.id.floatingActionButton);
+
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                opendialog();
+            }
+        });
+
+        return frag;
     }
-}
+
+    private void opendialog() {
+
+        dialog_expense page=new dialog_expense();
+        page.show(getFragmentManager(),"income popup");
+}}
