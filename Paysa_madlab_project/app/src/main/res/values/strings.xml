@@ -2,5 +2,7 @@
     <string name="app_name">Paysa_madlab_project</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="server_ip">http://13.232.30.2:8000</string>
+    <string name="signup_url">http://13.127.244.41:8000/signup</string>
+    <string name="signin_url">http://13.127.244.41:8000/signin</string>
+    <string name="verifyotp_url">http://13.127.244.41:8000/verifyOTP</string>
 </resources>

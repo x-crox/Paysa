@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:rotationX="-4"
     tools:context=".expenses">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints" />
 
-</FrameLayout>
+
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/neumorphCardView"
+        android:layout_width="382dp"
+        android:layout_height="402dp"
+        android:layout_marginVertical="@dimen/design_default_padding"
+
+        android:layout_marginTop="122dp"
+        android:layout_marginBottom="12dp"
+        android:fadingEdge="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></soup.neumorphism.NeumorphCardView>
+
+    <soup.neumorphism.NeumorphFloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="96dp"
+        android:layout_height="100dp"
+        android:layout_gravity="bottom|right"
+
+        android:layout_marginStart="307dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="150dp"
+        android:clickable="true"
+        android:outlineAmbientShadowColor="@color/white"
+        android:outlineSpotShadowColor="@color/white"
+        android:src="@drawable/ic_method_draw_image_2_"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

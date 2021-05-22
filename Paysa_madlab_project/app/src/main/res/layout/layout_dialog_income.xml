@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/official_background_color">
+
+
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/neumorphCardView2"
+        android:layout_marginVertical="100dp"
+        android:layout_width="335dp"
+        android:layout_height="76dp"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.309">
+
+        <EditText
+            android:id="@+id/category"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:hint="Add category"
+            android:inputType="textPersonName"
+            android:textColor="@color/actual_green"
+            android:textColorHint="@color/hint_color"
+            android:background="@color/official_background_color"
+
+
+            />
+
+    </soup.neumorphism.NeumorphCardView>
+
+
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/neumorphCardView"
+        android:layout_marginVertical="100dp"
+        android:layout_width="335dp"
+        android:layout_height="76dp"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.183">
+
+        <EditText
+            android:id="@+id/amount"
+            android:layout_width="318dp"
+            android:layout_height="59dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:hint="Add amount"
+            android:inputType="textPersonName"
+            android:textColor="@color/actual_green"
+            android:textColorHint="@color/hint_color"
+            android:background="@color/official_background_color"
+
+
+            tools:layout_editor_absoluteX="50dp"
+            tools:layout_editor_absoluteY="63dp" />
+    </soup.neumorphism.NeumorphCardView>
+
+
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/neumorphCardView3"
+        android:layout_marginVertical="100dp"
+        android:layout_width="335dp"
+        android:layout_height="76dp"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.444">
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="278dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:focusable="false"
+            android:gravity="center"
+            android:hint="Select date"
+            android:inputType="none"
+            android:textColor="@color/actual_green"
+            android:textColorHint="@color/hint_color"
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="315dp" />
+    </soup.neumorphism.NeumorphCardView>
+
+
+    <LinearLayout
+        android:orientation="horizontal">
+        <soup.neumorphism.NeumorphButton
+            android:id="@+id/otp_send"
+            android:layout_width="176dp"
+            android:layout_height="65dp"
+            android:layout_margin="20dp"
+            android:layout_marginVertical="100dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="SAVE"
+            android:textAlignment="center"
+            android:textColor="@color/actual_green"
+            android:textFontWeight="900"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.223"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.693">
+
+        </soup.neumorphism.NeumorphButton>
+
+        <Button
+            android:id="@+id/cancelpop"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_marginVertical="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:backgroundTint="@color/official_background_color"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:shadowColor="@color/official_background_color"
+            android:text="Cancel"
+            android:textColor="@color/actual_dark_green"
+            android:textFontWeight="1000"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.782"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.688" />
+
+    </LinearLayout>
+
+
+
+
+</TableLayout>
+

@@ -1,5 +1,6 @@
 package com.example.paysa_madlab_project;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -85,6 +86,8 @@ public class Sign_in extends Fragment {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 try {
                     // signin
                     /*
@@ -103,7 +106,7 @@ public class Sign_in extends Fragment {
                     String jsonData = JSONValue.toJSONString(jo);
 
                     // setup to make JSON POST request
-                    String url = "http://15.207.249.112:8000/signin";
+                    String url =getString(R.string.signin_url);
                     URL obj = new URL(url);
                     HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
@@ -149,6 +152,9 @@ public class Sign_in extends Fragment {
                     if (auth == true) {
                         //
                         Toast.makeText(getContext(),"Success",Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(frag.getContext(),homepage.class);
+                        startActivity(intent);
+
                     } else {
                         Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
                     }
@@ -175,3 +181,4 @@ public class Sign_in extends Fragment {
         return frag;
     }
 }
+

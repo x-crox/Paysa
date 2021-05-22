@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.*;
-import java.util.*;
 import java.net.*;
 import org.json.simple.*;
 
@@ -74,13 +72,13 @@ public class Sign_up extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View frag = inflater.inflate(R.layout.fragment_sign_up, container, false);
-        _email=frag.findViewById(R.id.new_username);
+        _email=frag.findViewById(R.id.category);
         otp_send=frag.findViewById(R.id.otp_send);
-        _fullname=frag.findViewById(R.id.fullname);
+        _fullname=frag.findViewById(R.id.amount);
         _password=frag.findViewById(R.id.new_password);
         _otp=frag.findViewById(R.id.otp);
         done=frag.findViewById(R.id.done);
-        cancel=frag.findViewById(R.id.cancel);
+        cancel=frag.findViewById(R.id.cancelpop);
         done.setOnClickListener(this::onClick);
         cancel.setOnClickListener(this::onClick);
         otp_send.setOnClickListener(this::onClick);
@@ -114,7 +112,7 @@ public class Sign_up extends Fragment implements View.OnClickListener {
                     String jsonData = JSONValue.toJSONString(jo);
 
                     // setup to make JSON POST request
-                    String url = "http://15.207.249.112:8000/signup";
+                    String url = getString(R.string.signup_url);
                     URL obj = new URL(url);
                     HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
@@ -193,7 +191,7 @@ public class Sign_up extends Fragment implements View.OnClickListener {
                     String jsonData = JSONValue.toJSONString(jo);
 
                     // setup to make JSON POST request
-                    String url = "http://15.207.249.112:8000/verifyOTP";
+                    String url = getString(R.string.verifyotp_url);
                     URL obj = new URL(url);
                     HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
