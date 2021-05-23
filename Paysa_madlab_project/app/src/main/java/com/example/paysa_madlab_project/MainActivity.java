@@ -26,13 +26,12 @@ public class MainActivity extends AppCompatActivity {
     EditText username;
     EditText password;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        new Server_configure(getString(R.string.server_url),getString(R.string.server_user),getString(R.string.server_pass));
 
         if (android.os.Build.VERSION.SDK_INT > 9){
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();

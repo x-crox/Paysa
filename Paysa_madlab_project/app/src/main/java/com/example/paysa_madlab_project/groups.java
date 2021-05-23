@@ -1,5 +1,7 @@
 package com.example.paysa_madlab_project;
 
+import android.annotation.SuppressLint;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +9,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,7 +29,8 @@ public class groups extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    ArrayList<Group_detail> gd;
+    GridView group_grid;
     public groups() {
         // Required empty public constructor
     }
@@ -59,6 +66,35 @@ public class groups extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_groups, container, false);
+        View group_frag=inflater.inflate(R.layout.fragment_groups, container, false);
+        try {
+            /*if(Server_configure.conn==null){
+                throw new Exception("Connection variable is null");
+            }
+            Server_configure.conn.createStatement();*/
+            /*
+            *   SQL statements to be inserted to to retrieve the group id and the corresponding
+            *   image.
+            *   The group id, images (more data to be inserted, will be notified later)
+            *   are encapsulated into the Group_detail class.
+            *
+            * */
+
+            /*For testing purposes*/
+            group_grid=group_frag.findViewById(R.id.group_grid);
+            gd.add(new Group_detail("1234",R.drawable.ic_paysa_logo));
+            gd.add(new Group_detail("2134",R.drawable.ic_group_icon));
+            gd.add(new Group_detail("1235",R.drawable.ic_participant_add_icon));
+            GroupAdapter groupAdapter=new GroupAdapter(getContext(),gd);
+            group_grid.setAdapter(groupAdapter);
+        }
+        /*catch(SQLException sqlException){
+            sqlException.printStackTrace();
+        }*/
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return group_frag;
     }
 }
