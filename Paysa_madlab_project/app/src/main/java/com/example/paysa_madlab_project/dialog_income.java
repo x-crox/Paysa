@@ -3,13 +3,11 @@ package com.example.paysa_madlab_project;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -41,7 +39,7 @@ public class dialog_income extends AppCompatDialogFragment {
 
 
 
-        amt=view.findViewById(R.id.amount);
+        amt=view.findViewById(R.id.newpswd);
         cat=view.findViewById(R.id.category);
         edt=(TextView)view.findViewById(R.id.date);
 

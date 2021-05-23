@@ -77,7 +77,7 @@ public class income extends Fragment {
         // Inflate the layout for this fragment
         View frag= inflater.inflate(R.layout.fragment_income, container, false);
 
-        b=frag.findViewById(R.id.floatingActionButton);
+        b=frag.findViewById(R.id.addbut);
 
         b.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -31,7 +31,7 @@
     </soup.neumorphism.NeumorphCardView>
 
     <soup.neumorphism.NeumorphButton
-        android:id="@+id/otp_send"
+        android:id="@+id/confirm"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:fontFamily="sans-serif-medium"
@@ -109,7 +109,7 @@
         app:layout_constraintVertical_bias="0.183">
 
         <EditText
-            android:id="@+id/amount"
+            android:id="@+id/newpswd"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
