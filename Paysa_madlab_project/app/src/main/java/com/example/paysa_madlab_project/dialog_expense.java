@@ -35,7 +35,7 @@ public class dialog_expense extends AppCompatDialogFragment {
 
         LayoutInflater inflater=getActivity().getLayoutInflater();
 
-        View view=inflater.inflate(R.layout.layout_dialog_income,null);
+        View view=inflater.inflate(R.layout.layout_dialog_expense,null);
 
 
 
