@@ -14,13 +14,20 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.annotation.NonNull;
 
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
+
+import soup.neumorphism.NeumorphButton;
 import soup.neumorphism.NeumorphFloatingActionButton;
 
 /**
@@ -80,9 +87,49 @@ public class profile extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
+
+
+
+
         View frag = inflater.inflate(R.layout.fragment_profile, container, false);
+
+
+        TextView user=frag.findViewById(R.id.paysaun);
+        EditText newpswd=frag.findViewById(R.id.newpswd);
+        EditText newpswd1=frag.findViewById(R.id.newpswd1);
+        NeumorphButton confirm=frag.findViewById(R.id.confirm);
+
+        user.setText(MainActivity.PaysaUsername);
         im = frag.findViewById(R.id.imageView1);
         but = frag.findViewById(R.id.profbut);
+
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String a = newpswd.getText().toString();
+                String b = newpswd1.getText().toString();
+                System.out.println(a + b + MainActivity.PaysaEmail);
+                if (a.compareTo(b) != 0) {
+                    Toast.makeText(getContext(),"Password doesn't match",Toast.LENGTH_SHORT).show();
+                } else {
+                    try{
+                        Statement st = MainActivity.conn.createStatement();
+                        st.executeUpdate("UPDATE Users SET password = '" + a + "' WHERE email = '" + MainActivity.PaysaEmail + "'");
+                        System.out.println("\n" + "UPDATE Users SET password = '" + a + "' WHERE email = '" + MainActivity.PaysaEmail + "'");
+                        Toast.makeText(getContext(),"Success!",Toast.LENGTH_SHORT).show();
+                    }
+                    catch (Exception sqlException){
+                        sqlException.printStackTrace();
+                    }
+                }
+            }
+        });
+
+
+
+
+
 
         but.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -4,7 +4,11 @@ import android.os.AsyncTask;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import javax.sql.*;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Server_configure extends AsyncTask<String,Void,String> {
 
@@ -17,18 +21,19 @@ public class Server_configure extends AsyncTask<String,Void,String> {
         this.server_url=url;
         this.auth_username=auth_username;
         this.auth_pass=auth_pass;
-    }
-
-    @Override
-    protected String doInBackground(String... strings) {
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            conn= DriverManager.getConnection(server_url,auth_username,auth_pass);
+            conn = DriverManager.getConnection(server_url,auth_username,auth_pass);
+            System.out.println("connected...\n");
         }
         catch (Exception sqlException){
             sqlException.printStackTrace();
         }
+    }
 
+    @Override
+    protected String doInBackground(String... strings) {
+        String result=null;
         return null;
     }
 }

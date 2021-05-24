@@ -30,6 +30,9 @@ import soup.neumorphism.NeumorphButton;
 
 public class MainActivity extends AppCompatActivity {
     NeumorphButton signup;
+    static Connection conn=null;
+    static String PaysaUsername = null;
+    static String PaysaEmail=null;
     Button login;
     EditText username;
     EditText password;
@@ -38,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        new Server_configure(getString(R.string.server_url),getString(R.string.server_user),getString(R.string.server_pass));
 
         if (android.os.Build.VERSION.SDK_INT > 9){
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -50,10 +51,14 @@ public class MainActivity extends AppCompatActivity {
         username=findViewById(R.id.username);
         password=findViewById(R.id.password);
 
-        ConnectMySql connectMySql = new ConnectMySql();
-        connectMySql.execute("");
+        try{
+            conn = DriverManager.getConnection(getString(R.string.server_url),getString(R.string.server_user), "@Paysa2021");
+        }
+        catch (Exception sqlException){
+            sqlException.printStackTrace();
+        }
 
-        Sign_in sign=new Sign_in();
+    Sign_in sign=new Sign_in();
         FragmentManager manager=getSupportFragmentManager();
         FragmentTransaction fragmentTransaction=manager.beginTransaction();
         fragmentTransaction.add(R.id.main_activity,sign).commit();
@@ -64,46 +69,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-private class ConnectMySql extends AsyncTask<String, Void, String> {
-    String res = "";
 
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        Toast.makeText(MainActivity.this,"Please wait...", Toast.LENGTH_SHORT)
-                .show();
-
-    }
-
-    @Override
-    protected String doInBackground(String... params) {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection(getString(R.string.server_url),getString(R.string.server_user),"@Paysa2021");            System.out.println("Databaseection success");
-
-            String result = "Database Connection Successful\n";
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT email FROM Users");
-
-            ResultSetMetaData rsmd = rs.getMetaData();
-
-            while (rs.next()) {
-                String email = rs.getString("email") + "\n";
-            }
-            res = result;
-        } catch (Exception e) {
-            e.printStackTrace();
-            res = e.toString();
-        }
-        return res;
-    }
-
-    @Override
-    protected void onPostExecute(String result) {
-        //setText(result);
-        System.out.println(result);
-
-
-    }
-}
 }

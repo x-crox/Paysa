@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 
 public class dialog_income extends AppCompatDialogFragment {
@@ -41,7 +42,7 @@ public class dialog_income extends AppCompatDialogFragment {
 
         amt=view.findViewById(R.id.newpswd);
         cat=view.findViewById(R.id.category);
-        edt=(TextView)view.findViewById(R.id.date);
+        edt=view.findViewById(R.id.date);
 
 
 
@@ -66,10 +67,19 @@ public class dialog_income extends AppCompatDialogFragment {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
 
-                System.out.println("entered print part");
-                month=month+1;
-                String date=dayOfMonth+"/"+month+"/"+year;
-                edt.setText(date);
+                Calendar mCalender = Calendar.getInstance();
+                mCalender.set(Calendar.YEAR, year);
+                mCalender.set(Calendar.MONTH, month);
+                mCalender.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                String selectedDate =DateFormat.getDateInstance(DateFormat.FULL).format(mCalender.getTime());
+                edt.setText(selectedDate);
+
+
+
+                //System.out.println("entered print part");
+                //month=month+1;
+                //String date=dayOfMonth+"/"+month+"/"+year;
+                //edt.setText(date);
 
             }
         };
