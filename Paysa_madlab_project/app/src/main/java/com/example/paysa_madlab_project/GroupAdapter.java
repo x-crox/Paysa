@@ -15,28 +15,14 @@ import androidx.annotation.Nullable;
 
 import soup.neumorphism.NeumorphImageButton;
 
-public class GroupAdapter extends BaseAdapter {
+public class GroupAdapter extends ArrayAdapter<Group_detail> {
     ArrayList<Group_detail> group_details;
     Context context;
     public GroupAdapter(@NonNull Context context, ArrayList<Group_detail> group_info) {
-        this.group_details=group_info;
+        super(context,0,group_info);
         this.context=context;
     }
 
-    @Override
-    public int getCount() {
-        return group_details.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return group_details.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return 0;
-    }
 
     @NonNull
     @Override

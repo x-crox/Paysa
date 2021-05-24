@@ -82,6 +82,7 @@ public class groups extends Fragment {
 
             /*For testing purposes*/
             group_grid=group_frag.findViewById(R.id.group_grid);
+            gd=new ArrayList<Group_detail>();
             gd.add(new Group_detail("1234",R.drawable.ic_paysa_logo));
             gd.add(new Group_detail("2134",R.drawable.ic_group_icon));
             gd.add(new Group_detail("1235",R.drawable.ic_participant_add_icon));
