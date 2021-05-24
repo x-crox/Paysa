@@ -16,7 +16,7 @@
 
 
     <soup.neumorphism.NeumorphFloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/addbut"
         android:layout_width="96dp"
         android:layout_height="100dp"
         android:layout_gravity="bottom|right"

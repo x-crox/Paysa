@@ -22,14 +22,14 @@
         android:layout_marginTop="122dp"
         android:layout_marginBottom="12dp"
         android:fadingEdge="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
+        app:layout_constraintBottom_toTopOf="@+id/addebut"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></soup.neumorphism.NeumorphCardView>
 
     <soup.neumorphism.NeumorphFloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/addebut"
         android:layout_width="96dp"
         android:layout_height="100dp"
         android:layout_gravity="bottom|right"

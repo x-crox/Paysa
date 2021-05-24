@@ -35,6 +35,7 @@ public class homepage extends AppCompatActivity {
                     case 2: tab.setText("Groups");
                         break;
                     case 3: tab.setText("My Profile");
+                     break;
                 }
             }
         }).attach();

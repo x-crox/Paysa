@@ -20,30 +20,19 @@ public class Server_configure {
         this.server_url=url;
         this.auth_username=auth_username;
         this.auth_pass=auth_pass;
-    }
-
-    public void connect(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            conn=DriverManager.getConnection(this.server_url,this.auth_username,this.auth_pass);
+            conn = DriverManager.getConnection(server_url,auth_username,auth_pass);
+            System.out.println("connected...\n");
         }
         catch(SQLException sqlException){
             sqlException.printStackTrace();
-        }
-        catch(Exception e){
-            e.printStackTrace();
         }
     }
-    public ResultSet execute_query(String query){
-        ResultSet rs=null;
-        try{
-            Statement statement=conn.createStatement();
-            rs=statement.executeQuery(query);
-            ResultSetMetaData rsmd=rs.getMetaData();
-        }
-        catch(SQLException sqlException){
-            sqlException.printStackTrace();
-        }
-        return rs;
+
+    @Override
+    protected String doInBackground(String... strings) {
+        String result=null;
+        return null;
     }
 }

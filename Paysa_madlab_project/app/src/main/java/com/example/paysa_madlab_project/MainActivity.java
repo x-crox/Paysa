@@ -9,21 +9,30 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
 
 import soup.neumorphism.NeumorphButton;
 
 public class MainActivity extends AppCompatActivity {
     NeumorphButton signup;
+    static Connection conn=null;
+    static String PaysaUsername = null;
+    static String PaysaEmail=null;
     Button login;
     EditText username;
     EditText password;
@@ -33,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Server_configure configure=new Server_configure(getString(R.string.server_url),getString(R.string.server_user),"@Paysa2021");
-        configure.connect();
         if (android.os.Build.VERSION.SDK_INT > 9){
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -47,15 +54,14 @@ public class MainActivity extends AppCompatActivity {
         try{
             ResultSet rs=configure.execute_query("SELECT * FROM Users");
 
-            while(rs.next()){
-                res=res+"\n"+rs.getString("email");
-            }
-            System.out.println(res);
+        try{
+            conn = DriverManager.getConnection(getString(R.string.server_url),getString(R.string.server_user), "@Paysa2021");
         }
-        catch(Exception e){
+        catch (Exception sqlException){
+            sqlException.printStackTrace();
+        }
 
-        }
-        Sign_in sign=new Sign_in();
+    Sign_in sign=new Sign_in();
         FragmentManager manager=getSupportFragmentManager();
         FragmentTransaction fragmentTransaction=manager.beginTransaction();
         fragmentTransaction.add(R.id.main_activity,sign).commit();
@@ -64,4 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+
 }

@@ -22,6 +22,10 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
 
 import soup.neumorphism.NeumorphButton;
 
@@ -154,9 +158,23 @@ public class Sign_in extends Fragment {
                         Toast.makeText(getContext(),"Success",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(frag.getContext(),homepage.class);
                         startActivity(intent);
+                        MainActivity.PaysaEmail = email;
+                        try{
+                            Statement st = MainActivity.conn.createStatement();
+                            ResultSet rs = st.executeQuery("SELECT * FROM Users WHERE email = '" + email + "'");
+                            ResultSetMetaData rsmd = rs.getMetaData();
 
+                            while (rs.next()) {
+                                MainActivity.PaysaUsername = rs.getString("fullname");
+                            }
+                            Toast.makeText(getContext(), "Signed-in!",Toast.LENGTH_SHORT).show();
+                        }
+
+                        catch (ExceptsqlException){
+                            sqlException.printStackTrace();
+                        }
                     } else {
-                        Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Invalid username or password!",Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (Exception e) {
