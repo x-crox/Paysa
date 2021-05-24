@@ -4,9 +4,12 @@ import android.os.AsyncTask;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 
-public class Server_configure extends AsyncTask<String,Void,String> {
+public class Server_configure {
 
     private String server_url;
     private String auth_username;
@@ -19,16 +22,28 @@ public class Server_configure extends AsyncTask<String,Void,String> {
         this.auth_pass=auth_pass;
     }
 
-    @Override
-    protected String doInBackground(String... strings) {
+    public void connect(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            conn= DriverManager.getConnection(server_url,auth_username,auth_pass);
+            conn=DriverManager.getConnection(this.server_url,this.auth_username,this.auth_pass);
         }
-        catch (Exception sqlException){
+        catch(SQLException sqlException){
             sqlException.printStackTrace();
         }
-
-        return null;
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    public ResultSet execute_query(String query){
+        ResultSet rs=null;
+        try{
+            Statement statement=conn.createStatement();
+            rs=statement.executeQuery(query);
+            ResultSetMetaData rsmd=rs.getMetaData();
+        }
+        catch(SQLException sqlException){
+            sqlException.printStackTrace();
+        }
+        return rs;
     }
 }

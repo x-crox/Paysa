@@ -18,6 +18,8 @@ import android.widget.EditText;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import java.sql.ResultSet;
+
 import soup.neumorphism.NeumorphButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new Server_configure(getString(R.string.server_url),getString(R.string.server_user),getString(R.string.server_pass));
-
+        Server_configure configure=new Server_configure(getString(R.string.server_url),getString(R.string.server_user),"@Paysa2021");
+        configure.connect();
         if (android.os.Build.VERSION.SDK_INT > 9){
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -41,7 +43,18 @@ public class MainActivity extends AppCompatActivity {
         login=findViewById(R.id.login);
         username=findViewById(R.id.username);
         password=findViewById(R.id.password);
+        String res=null;
+        try{
+            ResultSet rs=configure.execute_query("SELECT * FROM Users");
 
+            while(rs.next()){
+                res=res+"\n"+rs.getString("email");
+            }
+            System.out.println(res);
+        }
+        catch(Exception e){
+
+        }
         Sign_in sign=new Sign_in();
         FragmentManager manager=getSupportFragmentManager();
         FragmentTransaction fragmentTransaction=manager.beginTransaction();
