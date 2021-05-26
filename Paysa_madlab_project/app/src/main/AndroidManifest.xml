@@ -14,8 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Paysa_madlab_project"
         android:usesCleartextTraffic="true">
-        <activity android:name=".homepage"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".homepage" android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".MainActivity" android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

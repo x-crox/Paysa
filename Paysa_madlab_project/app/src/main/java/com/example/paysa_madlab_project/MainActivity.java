@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     static Connection conn=null;
     static String PaysaUsername = null;
     static String PaysaEmail=null;
+    static dialog_income di = null;
+    static dialog_expense de = null;
     Button login;
     EditText username;
     EditText password;

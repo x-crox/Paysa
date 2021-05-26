@@ -1,27 +1,40 @@
 package com.example.paysa_madlab_project;
 
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.DatePicker;
+import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+
+
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import soup.neumorphism.NeumorphButton;
 
 public class dialog_income extends AppCompatDialogFragment {
 
     private EditText amt;
-    private EditText cat;
-    private TextView edt;
+    String date,month;
+    String findate;
+    String amount=null;  //private EditText cat;
+   // private TextView edt;
 
 
 
@@ -37,52 +50,76 @@ public class dialog_income extends AppCompatDialogFragment {
         View view=inflater.inflate(R.layout.layout_dialog_income,null);
 
 
+        amt=view.findViewById(R.id.amountinc);
+       CalendarView calendarView=view.findViewById(R.id.simpleCalendarView);
+        NeumorphButton save=view.findViewById(R.id.save);
+        Button cancel=view.findViewById(R.id.cancelpop);
 
 
-
-        amt=view.findViewById(R.id.newpswd);
-        cat=view.findViewById(R.id.category);
-        edt=view.findViewById(R.id.date);
-
-
-
-
-
-        Calendar calendar=Calendar.getInstance();
-
-        final int year=calendar.get(Calendar.YEAR);
-        final int month=calendar.get(Calendar.MONTH);
-        final int day=calendar.get(Calendar.DAY_OF_MONTH);
-
-
-        edt.setOnClickListener(new View.OnClickListener() {
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
-            public void onClick(View view) {
-                DatePickerDialog datePickerDialog=new DatePickerDialog(view.getContext(), android.R.style.Theme_Holo_Light_Dialog_MinWidth,null,year,month,day);
-                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                datePickerDialog.show();
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
+                i1=i1+1;
+                if(i2<=9)
+                {
+                    date="0"+i2;
+                }
+                if(i1<=9)
+                {
+                    month="0"+i1;
+                }
+
+
+                findate=i+"-"+month+"-"+date;
+
             }
         });
-        DatePickerDialog.OnDateSetListener setListener =new DatePickerDialog.OnDateSetListener() {
+
+
+
+
+
+
+
+
+
+        save.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
 
-                Calendar mCalender = Calendar.getInstance();
-                mCalender.set(Calendar.YEAR, year);
-                mCalender.set(Calendar.MONTH, month);
-                mCalender.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                String selectedDate =DateFormat.getDateInstance(DateFormat.FULL).format(mCalender.getTime());
-                edt.setText(selectedDate);
+            public void onClick(View view) {
+                amount = amt.getText().toString();
+                try{
+                    Statement st = MainActivity.conn.createStatement();
+                    System.out.println("INSERT INTO Income VALUES('" + MainActivity.PaysaEmail + "', " + amount + ", '" +findate + "')");
+                    int count = st.executeUpdate("INSERT INTO Income VALUES('" + MainActivity.PaysaEmail + "', '" + amount + "', '" + findate + "')");
+                    if (count > 0)
+                    {  Toast.makeText(getContext(), "Income added!",Toast.LENGTH_SHORT).show();
 
+//
+//                        FragmentTransaction fr = getFragmentManager().beginTransaction();
+//                      fr.replace(R.id.incometab, new income());
+//                        fr.commit();
+                        MainActivity.di.dismiss();
+                    }
+                    else
+                        Toast.makeText(getContext(), "Something went wrong!",Toast.LENGTH_SHORT).show();
+                }
 
-
-                //System.out.println("entered print part");
-                //month=month+1;
-                //String date=dayOfMonth+"/"+month+"/"+year;
-                //edt.setText(date);
-
+                catch (Exception sqlException){
+                    sqlException.printStackTrace();
+                }
             }
-        };
+        });
+
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.di.dismiss();
+            }
+        });
+
+
 
 
 

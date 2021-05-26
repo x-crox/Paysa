@@ -73,8 +73,8 @@ public class Sign_up extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View frag = inflater.inflate(R.layout.fragment_sign_up, container, false);
         _email=frag.findViewById(R.id.category);
-        otp_send=frag.findViewById(R.id.confirm);
-        _fullname=frag.findViewById(R.id.newpswd);
+        otp_send=frag.findViewById(R.id.save);
+        _fullname=frag.findViewById(R.id.amountexp);
         _password=frag.findViewById(R.id.new_password);
         _otp=frag.findViewById(R.id.otp);
         done=frag.findViewById(R.id.done);
@@ -93,7 +93,7 @@ public class Sign_up extends Fragment implements View.OnClickListener {
         String fullname = _fullname.getText().toString();
         String password = _password.getText().toString();
         switch(v.getId()){
-            case R.id.confirm:
+            case R.id.save:
                 System.out.println("done");
                 Toast.makeText(this.getContext(),"done clicked",Toast.LENGTH_SHORT).show();
                 //add the data to the database
@@ -245,7 +245,7 @@ public class Sign_up extends Fragment implements View.OnClickListener {
                 break;
         }
 
-        if(v.getId()!=R.id.confirm){
+        if(v.getId()!=R.id.save){
             manager.beginTransaction().replace(R.id.main_activity,new Sign_in()).commit();
         }
 
