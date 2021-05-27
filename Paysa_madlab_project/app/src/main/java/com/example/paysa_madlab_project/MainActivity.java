@@ -54,16 +54,16 @@ public class MainActivity extends AppCompatActivity {
         username=findViewById(R.id.username);
         password=findViewById(R.id.password);
 
-        Server_configure configure=new Server_configure(getString(R.string.server_url),getString(R.string.server_user),"@Paysa2021");
+        //Server_configure configure=new Server_configure(getString(R.string.server_url),getString(R.string.server_user),"@Paysa2021");
 
-        /*try{
+        try{
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getString(R.string.server_url),getString(R.string.server_user), "@Paysa2021");
             System.out.println("Database connection successful");
         }
         catch (Exception sqlException){
             sqlException.printStackTrace();
-        }*/
+        }
 
     Sign_in sign=new Sign_in();
         FragmentManager manager=getSupportFragmentManager();

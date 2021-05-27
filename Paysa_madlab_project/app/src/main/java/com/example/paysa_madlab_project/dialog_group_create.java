@@ -7,8 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
+
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import soup.neumorphism.NeumorphButton;
 
@@ -34,7 +38,27 @@ public class dialog_group_create extends AppCompatDialogFragment {
         add_group.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                groups.gd.add(new Group_detail(group_name.getText().toString()));
+                try{
+                    Statement st = MainActivity.conn.createStatement();
+                    int count = st.executeUpdate("INSERT INTO Groups VALUES ('" +  group_name.getText().toString() + "')");
+                    System.out.println("INSERT INTO Groups VALUES ('" +  group_name.getText().toString() + "')");
+                    if (count > 0) {
+                        Toast.makeText(getContext(), "Group created!",Toast.LENGTH_SHORT).show();
+                        System.out.println("INSERT INTO GroupMembers VALUES ('" + group_name.getText().toString() + "', '" + MainActivity.PaysaEmail + "')");
+                        count = st.executeUpdate("INSERT INTO GroupMembers VALUES ('" + group_name.getText().toString() + "', '" + MainActivity.PaysaEmail + "')");
+                        if (count > 0) {
+                            Toast.makeText(getContext(), "Added you to group!",Toast.LENGTH_SHORT).show();
+                            groups.gd.add(new Group_detail(group_name.getText().toString()));
+                        } else {
+                            Toast.makeText(getContext(), "Failed to add you to group!",Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(getContext(), "Failed create group!",Toast.LENGTH_SHORT).show();
+                    }
+                }
+                catch (Exception sqlException){
+                    sqlException.printStackTrace();
+                }
                 groups.group_grid.setAdapter(new GroupAdapter(getContext(),groups.gd));
                 MainActivity.dgc.dismiss();
             }

@@ -7,8 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
+
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import soup.neumorphism.NeumorphButton;
 
@@ -32,7 +36,19 @@ public class dialog_participant_add extends AppCompatDialogFragment {
             @Override
             public void onClick(View v) {
                 if(participant_email.getText().toString().length()>0){
-                    Group_detail.getParticipants(Group_page.prev_view).add(participant_email.getText().toString());
+                    try{
+                        Statement st = MainActivity.conn.createStatement();
+                        int count = st.executeUpdate("INSERT INTO GroupMembers VALUES ('" + Group_detail.getGroup_name(Group_page.prev_view) + "', '" + participant_email.getText().toString() + "')");
+                        if (count > 0) {
+                            Toast.makeText(getContext(), "New group member added!",Toast.LENGTH_SHORT).show();
+                            Group_detail.getParticipants(Group_page.prev_view).add(participant_email.getText().toString());
+                        } else {
+                            Toast.makeText(getContext(), "Failed to add!",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    catch (Exception sqlException){
+                        sqlException.printStackTrace();
+                    }
                     Group_page.participant_grid.setAdapter(new participant_add_adapter(getContext(),Group_detail.getParticipants(Group_page.prev_view)));
                     Group_page.dpa.dismiss();
                 }

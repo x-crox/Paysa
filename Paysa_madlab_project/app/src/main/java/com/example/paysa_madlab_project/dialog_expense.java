@@ -68,11 +68,16 @@ public class dialog_expense extends AppCompatDialogFragment {
                 {
                     date="0"+i2;
                 }
+                else{
+                    date= new Integer(i2).toString();
+                }
                 if(i1<=9)
                 {
                     month="0"+i1;
                 }
-
+                else{
+                    month=new Integer(i1).toString();
+                }
 
                 findate=i+"-"+month+"-"+date;
 

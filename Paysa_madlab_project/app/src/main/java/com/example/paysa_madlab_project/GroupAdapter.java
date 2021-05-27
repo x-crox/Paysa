@@ -34,7 +34,11 @@ public class GroupAdapter extends ArrayAdapter<Group_detail> {
             grid_item= LayoutInflater.from(context).inflate(R.layout.group_layout,parent,false);
         }
         Group_detail imgMap=(Group_detail) getItem(position);
-        Group_detail.add_item(grid_item,new ArrayList<String>());
+        Group_detail.group_name_to_view.put(imgMap.getGroup_name(),grid_item);
+        Group_detail.view_to_group_name.put(grid_item,imgMap.getGroup_name());
+        ArrayList<String> x = new ArrayList<String>();
+        x.add(MainActivity.PaysaEmail);
+        Group_detail.add_item(grid_item, x);
         ImageView group_dp =grid_item.findViewById(R.id.group_dp);
         group_dp.setImageResource(imgMap.getImg_src());
         group_dp.setForegroundGravity(Gravity.CENTER);

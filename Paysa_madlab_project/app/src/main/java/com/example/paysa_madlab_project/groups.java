@@ -13,8 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import soup.neumorphism.NeumorphImageButton;
@@ -99,9 +103,19 @@ public class groups extends Fragment {
             /*For testing purposes*/
             group_grid=group_frag.findViewById(R.id.group_grid);
             gd=new ArrayList<Group_detail>();
-            gd.add(new Group_detail("1234",R.drawable.ic_paysa_logo));
-            gd.add(new Group_detail("2134",R.drawable.ic_group_icon));
-            gd.add(new Group_detail("1235",R.drawable.ic_participant_add_icon));
+            try{
+                Statement st = MainActivity.conn.createStatement();
+                ResultSet rs = st.executeQuery("SELECT group_name FROM GroupMembers WHERE email = '" + MainActivity.PaysaEmail + "'");
+//                ResultSetMetaData rsmd = rs.getMetaData();
+
+                while (rs.next()) {
+                    System.out.println(rs.getString("group_name"));
+                    gd.add(new Group_detail(rs.getString("group_name")));
+                }
+            }
+            catch (Exception sqlException){
+                sqlException.printStackTrace();
+            }
             GroupAdapter groupAdapter=new GroupAdapter(getContext(),gd);
             group_grid.setAdapter(groupAdapter);
 
@@ -114,9 +128,6 @@ public class groups extends Fragment {
                 }
             });
         }
-        /*catch(SQLException sqlException){
-            sqlException.printStackTrace();
-        }*/
         catch(Exception e){
             e.printStackTrace();
         }
