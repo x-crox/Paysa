@@ -8,6 +8,24 @@
     android:background="@color/official_background_color">
 
 
+    <CalendarView
+        android:id="@+id/simpleCalendarView"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        ></CalendarView>
+
+
+
+
+
+
+
+
+
+
+
+
+
     <soup.neumorphism.NeumorphCardView
         android:id="@+id/neumorphCardView2"
         android:layout_marginVertical="100dp"
@@ -51,7 +69,7 @@
         app:layout_constraintVertical_bias="0.183">
 
         <EditText
-            android:id="@+id/newpswd"
+            android:id="@+id/amountexp"
             android:layout_width="318dp"
             android:layout_height="59dp"
             android:layout_gravity="center"
@@ -68,38 +86,12 @@
     </soup.neumorphism.NeumorphCardView>
 
 
-    <soup.neumorphism.NeumorphCardView
-        android:id="@+id/neumorphCardView3"
-        android:layout_marginVertical="100dp"
-        android:layout_width="335dp"
-        android:layout_height="76dp"
-        android:layout_margin="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.444">
-
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="278dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:focusable="false"
-            android:gravity="center"
-            android:hint="Select date"
-            android:inputType="none"
-            android:textColor="@color/actual_green"
-            android:textColorHint="@color/hint_color"
-            tools:layout_editor_absoluteX="60dp"
-            tools:layout_editor_absoluteY="315dp" />
-    </soup.neumorphism.NeumorphCardView>
 
 
     <LinearLayout
         android:orientation="horizontal">
         <soup.neumorphism.NeumorphButton
-            android:id="@+id/confirm"
+            android:id="@+id/save"
             android:layout_width="176dp"
             android:layout_height="65dp"
             android:layout_margin="20dp"

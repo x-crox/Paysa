@@ -5,15 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:rotationX="-4"
+    android:id="@+id/incometab"
     tools:context=".income">
 
-<RelativeLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    tools:ignore="MissingConstraints" />
 
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/neumorphCardView"
+        android:layout_width="382dp"
+        android:layout_height="402dp"
+        android:layout_marginVertical="@dimen/design_default_padding"
 
+        android:layout_marginStart="12dp"
+        android:fadingEdge="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.167">
 
+        <com.jjoe64.graphview.GraphView
+            android:id="@+id/graph"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            </com.jjoe64.graphview.GraphView>
+
+    </soup.neumorphism.NeumorphCardView>
 
     <soup.neumorphism.NeumorphFloatingActionButton
         android:id="@+id/addbut"
@@ -22,9 +37,10 @@
         android:layout_gravity="bottom|right"
 
         android:layout_marginStart="307dp"
+        android:layout_marginTop="67dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="150dp"
 
+        android:layout_marginBottom="150dp"
         android:clickable="true"
         android:outlineAmbientShadowColor="@color/white"
         android:outlineSpotShadowColor="@color/white"
@@ -32,6 +48,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/neumorphCardView"
         tools:ignore="MissingConstraints" />
 
 

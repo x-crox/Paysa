@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -19,12 +18,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import androidx.annotation.NonNull;
-
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 
 import soup.neumorphism.NeumorphButton;
@@ -96,9 +89,9 @@ public class profile extends Fragment {
 
 
         TextView user=frag.findViewById(R.id.paysaun);
-        EditText newpswd=frag.findViewById(R.id.newpswd);
+        EditText newpswd=frag.findViewById(R.id.amountexp);
         EditText newpswd1=frag.findViewById(R.id.newpswd1);
-        NeumorphButton confirm=frag.findViewById(R.id.confirm);
+        NeumorphButton confirm=frag.findViewById(R.id.save);
 
         user.setText(MainActivity.PaysaUsername);
         im = frag.findViewById(R.id.imageView1);
