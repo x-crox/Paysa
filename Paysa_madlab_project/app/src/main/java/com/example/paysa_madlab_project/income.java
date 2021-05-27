@@ -85,7 +85,7 @@ public class income extends Fragment {
         b=frag.findViewById(R.id.addbut);
 
         final Handler handler = new Handler();
-        final int delay = 1000; // 1000 milliseconds == 1 second
+        final int delay = 5000; // 1000 milliseconds == 1 second
 
         handler.postDelayed(new Runnable() {
             public void run() {
