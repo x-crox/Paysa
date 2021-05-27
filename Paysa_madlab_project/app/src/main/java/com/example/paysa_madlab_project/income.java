@@ -94,7 +94,7 @@ public class income extends Fragment {
                 int i = 0;
                 try{
                     Statement st = MainActivity.conn.createStatement();
-                    ResultSet rs = st.executeQuery("SELECT MONTH(income_date) AS Income_month, SUM(amount) AS Total\n" +
+                    ResultSet rs =st.executeQuery("SELECT MONTH(income_date) AS Income_month, SUM(amount) AS Total\n" +
                             "FROM Income\n" +
                             "WHERE email = '" + MainActivity.PaysaEmail + "'\n" +
                             "GROUP BY MONTH(income_date)\n" +

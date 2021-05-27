@@ -1,15 +1,20 @@
 package com.example.paysa_madlab_project;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -28,6 +33,7 @@ public class Group_page extends AppCompatActivity{
     static HashMap<View,String> view_to_participant_detail=new HashMap<View,String>();
 
     ArrayList<String> demo=new ArrayList<String>();
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +46,18 @@ public class Group_page extends AppCompatActivity{
         amt_in_debt=findViewById(R.id.amt_in_debt);
         add_group_expense=findViewById(R.id.add_expense_button);
 
-        demo.add("abcd@gmail.com");
-        demo.add("hjds@gmail.com");
-        demo.add("hs@gmail.com");
+        String group_name=Group_detail.getGroup_name(prev_view);
+        try{
+            Statement st = MainActivity.conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT email FROM GroupMembers WHERE group_name = '" + Group_detail.getGroup_name(prev_view) + "'");
+            while (rs.next()) {
+                demo.add(rs.getString("email"));
+            }
+        }
+        catch (Exception sqlException){
+            sqlException.printStackTrace();
+        }
+        Group_detail.view_to_participant.replace(prev_view,Group_detail.getParticipants(prev_view),demo);
         participant_grid.setAdapter(new participant_add_adapter(getApplicationContext(),Group_detail.getParticipants(prev_view)));
 
         participant_add_button.setOnClickListener(new View.OnClickListener() {

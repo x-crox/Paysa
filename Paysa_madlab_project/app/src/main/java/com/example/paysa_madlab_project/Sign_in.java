@@ -161,8 +161,8 @@ public class Sign_in extends Fragment {
                         startActivity(intent);
                         MainActivity.PaysaEmail = email;
                         try{
-                            Statement st = Server_configure.conn.createStatement();//MainActivity.conn.createStatement();
-                            ResultSet rs = Server_configure.execute_query("SELECT * FROM Users WHERE email = '" + email + "'");//st.executeQuery("SELECT * FROM Users WHERE email = '" + email + "'");
+                            Statement st = MainActivity.conn.createStatement();
+                            ResultSet rs = st.executeQuery("SELECT * FROM Users WHERE email = '" + email + "'");//st.executeQuery("SELECT * FROM Users WHERE email = '" + email + "'");
                             //ResultSetMetaData rsmd = rs.getMetaData();
 
                             while (rs.next()) {

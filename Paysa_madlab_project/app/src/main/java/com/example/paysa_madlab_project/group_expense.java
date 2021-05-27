@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
@@ -16,9 +17,13 @@ import com.androidbuts.multispinnerfilter.KeyPairBoolData;
 import com.androidbuts.multispinnerfilter.MultiSpinnerListener;
 import com.androidbuts.multispinnerfilter.MultiSpinnerSearch;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import javax.xml.transform.Result;
 
 import soup.neumorphism.NeumorphButton;
 import soup.neumorphism.NeumorphImageButton;
@@ -31,14 +36,9 @@ public class group_expense extends AppCompatDialogFragment{
     static TextView amt_in_debt;
 
 
-     List<String> list= Arrays.asList("varsha","vignesh","atrim");
+     List<String> list= new ArrayList<String>();
 
-
-
-  List<KeyPairBoolData> listArray = new ArrayList<KeyPairBoolData>();
-
-
-
+    List<KeyPairBoolData> listArray = new ArrayList<KeyPairBoolData>();
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -48,6 +48,19 @@ public class group_expense extends AppCompatDialogFragment{
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
         View view = inflater.inflate(R.layout.layout_group_expense, null);
+
+        try{
+            Statement st = MainActivity.conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT email FROM Users");
+
+            while (rs.next()) {
+                list.add(rs.getString("email"));
+            }
+        }
+
+        catch (Exception sqlException){
+            sqlException.printStackTrace();
+        }
 
         for(int i=0; i<list.size(); i++) {
             KeyPairBoolData h = new KeyPairBoolData();

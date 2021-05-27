@@ -10,7 +10,10 @@ public class Group_detail {
     private String group_id;
     private Integer img_src;
     private String group_name;
-    private static HashMap <View, ArrayList<String>> view_to_participant=new HashMap<View,ArrayList<String>>();
+    static HashMap<String,View> group_name_to_view=new HashMap<String,View>();
+    static HashMap<View,String> view_to_group_name=new HashMap<View,String>();
+
+    public static HashMap <View, ArrayList<String>> view_to_participant=new HashMap<View,ArrayList<String>>();
     public Group_detail(String group_id,Integer img_src){
         this.group_id=group_id;
         this.img_src=img_src;
@@ -29,7 +32,16 @@ public class Group_detail {
     public static void add_item(View view,ArrayList<String> participants){
         view_to_participant.put(view,participants);
     }
+    public String getGroup_name(){
+        return group_name;
+    }
 
+    public static ArrayList<String> getParticipants(String grp_name){
+        return view_to_participant.get(group_name_to_view.get(grp_name));
+    }
+    public static String getGroup_name(View v){
+        return view_to_group_name.get(v);
+    }
     public String getGroup_id(){
         return this.group_id;
     }

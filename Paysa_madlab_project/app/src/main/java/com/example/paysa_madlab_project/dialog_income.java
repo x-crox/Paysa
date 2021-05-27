@@ -31,7 +31,7 @@ import soup.neumorphism.NeumorphButton;
 public class dialog_income extends AppCompatDialogFragment {
 
     private EditText amt;
-    String date,month;
+    String date = null,month = null;
     String findate;
     String amount=null;  //private EditText cat;
    // private TextView edt;
@@ -63,17 +63,19 @@ public class dialog_income extends AppCompatDialogFragment {
                 if(i2<=9)
                 {
                     date="0"+i2;
+                } else {
+                    date = new Integer(i2).toString();
                 }
-                else{ date=new Integer(i2).toString();}
+
                 if(i1<=9)
                 {
                     month="0"+i1;
+                } else {
+                    month = new Integer(i1).toString();
                 }
-                else{ month=new Integer(i1).toString();}
 
 
                 findate=i+"-"+month+"-"+date;
-
             }
         });
 
