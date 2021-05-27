@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/official_background_color"
+
+    >
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/neumorphCardView2"
+        android:layout_width="335dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginHorizontal="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.309">
+
+        <EditText
+            android:id="@+id/participant_email"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:hint="Enter participant username"
+            android:inputType="textPersonName"
+            android:textColor="@color/actual_green"
+            android:textColorHint="@color/hint_color"
+
+            />
+
+    </soup.neumorphism.NeumorphCardView>
+
+
+
+    <soup.neumorphism.NeumorphButton
+        android:id="@+id/participant_add"
+        android:layout_width="159dp"
+        android:layout_height="73dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="Done"
+        android:textColor="@color/actual_green"
+        android:textFontWeight="1000"
+        android:textSize="25dp"
+        android:layout_marginHorizontal="80dp"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.775" />
+
+    <Button
+        android:id="@+id/cancel_add_participant"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/official_background_color"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:shadowColor="@color/official_background_color"
+        android:text="Cancel"
+        android:textColor="@color/actual_dark_green"
+        android:textFontWeight="1000"
+        android:textSize="15dp"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.871" />
+
+
+</TableLayout>

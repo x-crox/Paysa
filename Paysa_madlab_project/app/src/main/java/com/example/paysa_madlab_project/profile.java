@@ -103,7 +103,7 @@ public class profile extends Fragment {
         user.setText(MainActivity.PaysaUsername);
         im = frag.findViewById(R.id.imageView1);
         but = frag.findViewById(R.id.profbut);
-
+        System.out.println(MainActivity.PaysaUsername+" "+MainActivity.PaysaEmail);
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,7 +114,7 @@ public class profile extends Fragment {
                     Toast.makeText(getContext(),"Password doesn't match",Toast.LENGTH_SHORT).show();
                 } else {
                     try{
-                        Statement st = MainActivity.conn.createStatement();
+                        Statement st = Server_configure.conn.createStatement();//MainActivity.conn.createStatement();
                         st.executeUpdate("UPDATE Users SET password = '" + a + "' WHERE email = '" + MainActivity.PaysaEmail + "'");
                         System.out.println("\n" + "UPDATE Users SET password = '" + a + "' WHERE email = '" + MainActivity.PaysaEmail + "'");
                         Toast.makeText(getContext(),"Success!",Toast.LENGTH_SHORT).show();

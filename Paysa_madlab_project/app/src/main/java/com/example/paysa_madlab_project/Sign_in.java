@@ -25,6 +25,7 @@ import java.net.URL;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import soup.neumorphism.NeumorphButton;
@@ -155,22 +156,23 @@ public class Sign_in extends Fragment {
 
                     if (auth == true) {
                         //
-                        Toast.makeText(getContext(),"Success",Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(),"Success",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(frag.getContext(),homepage.class);
                         startActivity(intent);
                         MainActivity.PaysaEmail = email;
                         try{
-                            Statement st = MainActivity.conn.createStatement();
-                            ResultSet rs = st.executeQuery("SELECT * FROM Users WHERE email = '" + email + "'");
-                            ResultSetMetaData rsmd = rs.getMetaData();
+                            Statement st = Server_configure.conn.createStatement();//MainActivity.conn.createStatement();
+                            ResultSet rs = Server_configure.execute_query("SELECT * FROM Users WHERE email = '" + email + "'");//st.executeQuery("SELECT * FROM Users WHERE email = '" + email + "'");
+                            //ResultSetMetaData rsmd = rs.getMetaData();
 
                             while (rs.next()) {
                                 MainActivity.PaysaUsername = rs.getString("fullname");
                             }
                             Toast.makeText(getContext(), "Signed-in!",Toast.LENGTH_SHORT).show();
+
                         }
 
-                        catch (ExceptsqlException){
+                        catch (Exception sqlException){
                             sqlException.printStackTrace();
                         }
                     } else {

@@ -10,27 +10,52 @@
     <GridLayout
         android:id="@+id/group_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="505dp"
+        android:layout_margin="20dp"
         android:alignmentMode="alignBounds"
-        android:orientation="horizontal"
         android:columnCount="3"
         android:foregroundGravity="center_horizontal"
-        android:layout_margin="20dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="4dp"
         android:rowOrderPreserved="false"
         android:useDefaultMargins="true"
-        android:paddingHorizontal="4dp"
-        >
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.015">
+
         <GridView
             android:id="@+id/group_grid"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="169dp"
-            tools:layout_editor_absoluteY="229dp"
+            android:layout_row="0"
+            android:layout_column="0"
             android:paddingHorizontal="10dp"
-            >
+            tools:layout_editor_absoluteX="169dp"
+            tools:layout_editor_absoluteY="229dp">
 
         </GridView>
 
     </GridLayout>
+
+    <soup.neumorphism.NeumorphImageButton
+        android:id="@+id/add_group_plus"
+        android:layout_width="98dp"
+        android:layout_height="98dp"
+        android:layout_margin="5dp"
+        android:foregroundGravity="center"
+        android:scaleType="center"
+        android:src="@drawable/ic_group_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.842">
+
+
+    </soup.neumorphism.NeumorphImageButton>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

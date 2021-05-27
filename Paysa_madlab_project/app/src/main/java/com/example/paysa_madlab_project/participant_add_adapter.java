@@ -1,30 +1,25 @@
 package com.example.paysa_madlab_project;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import soup.neumorphism.NeumorphImageButton;
+import java.util.ArrayList;
 
-public class GroupAdapter extends ArrayAdapter<Group_detail> {
-    ArrayList<Group_detail> group_details;
-    Context context;
-
-    public GroupAdapter(@NonNull Context context, ArrayList<Group_detail> group_info) {
-        super(context,0,group_info);
+public class participant_add_adapter extends ArrayAdapter<String> {
+    private Context context;
+    public participant_add_adapter(@NonNull Context context, ArrayList<String> participants) {
+        super(context, 0,participants);
+        //Group_page.view_to_participant_detail.clear();
         this.context=context;
     }
-
 
     @NonNull
     @Override
@@ -33,10 +28,10 @@ public class GroupAdapter extends ArrayAdapter<Group_detail> {
         if(convertView==null){
             grid_item= LayoutInflater.from(context).inflate(R.layout.group_layout,parent,false);
         }
-        Group_detail imgMap=(Group_detail) getItem(position);
-        Group_detail.add_item(grid_item,new ArrayList<String>());
+        String details=(String) getItem(position);
+        Group_page.view_to_participant_detail.put(grid_item,details);
         ImageView group_dp =grid_item.findViewById(R.id.group_dp);
-        group_dp.setImageResource(imgMap.getImg_src());
+        group_dp.setImageResource(R.drawable.ic_baseline_account_circle_24);
         group_dp.setForegroundGravity(Gravity.CENTER);
         return grid_item;
     }

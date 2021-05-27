@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     static Connection conn=null;
     static String PaysaUsername = null;
     static String PaysaEmail=null;
+    static dialog_group_create dgc = null;
     Button login;
     EditText username;
     EditText password;
@@ -50,16 +51,17 @@ public class MainActivity extends AppCompatActivity {
         login=findViewById(R.id.login);
         username=findViewById(R.id.username);
         password=findViewById(R.id.password);
-        String res=null;
-        try{
-            ResultSet rs=configure.execute_query("SELECT * FROM Users");
 
-        try{
+        Server_configure configure=new Server_configure(getString(R.string.server_url),getString(R.string.server_user),"@Paysa2021");
+
+        /*try{
+            Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getString(R.string.server_url),getString(R.string.server_user), "@Paysa2021");
+            System.out.println("Database connection successful");
         }
         catch (Exception sqlException){
             sqlException.printStackTrace();
-        }
+        }*/
 
     Sign_in sign=new Sign_in();
         FragmentManager manager=getSupportFragmentManager();

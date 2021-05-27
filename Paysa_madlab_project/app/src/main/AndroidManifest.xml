@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Paysa_madlab_project"
         android:usesCleartextTraffic="true">
-        <activity android:name=".homepage"></activity>
+        <activity android:name=".Group_page"></activity>
+        <activity android:name=".homepage" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

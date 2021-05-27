@@ -1,6 +1,8 @@
 package com.example.paysa_madlab_project;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -9,10 +11,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import soup.neumorphism.NeumorphImageButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,8 +34,9 @@ public class groups extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    ArrayList<Group_detail> gd;
-    GridView group_grid;
+    static ArrayList<Group_detail> gd;
+    static GridView group_grid;
+    NeumorphImageButton add_group_plus;
     public groups() {
         // Required empty public constructor
     }
@@ -62,11 +68,15 @@ public class groups extends Fragment {
         }
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View group_frag=inflater.inflate(R.layout.fragment_groups, container, false);
+
+
         try {
             /*if(Server_configure.conn==null){
                 throw new Exception("Connection variable is null");
@@ -79,7 +89,13 @@ public class groups extends Fragment {
             *   are encapsulated into the Group_detail class.
             *
             * */
-
+            add_group_plus=group_frag.findViewById(R.id.add_group_plus);
+            add_group_plus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    open_group_dialog();
+                }
+            });
             /*For testing purposes*/
             group_grid=group_frag.findViewById(R.id.group_grid);
             gd=new ArrayList<Group_detail>();
@@ -88,6 +104,15 @@ public class groups extends Fragment {
             gd.add(new Group_detail("1235",R.drawable.ic_participant_add_icon));
             GroupAdapter groupAdapter=new GroupAdapter(getContext(),gd);
             group_grid.setAdapter(groupAdapter);
+
+            group_grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent=new Intent(getContext(),Group_page.class);
+                    Group_page.prev_view=view;
+                    startActivity(intent);
+                }
+            });
         }
         /*catch(SQLException sqlException){
             sqlException.printStackTrace();
@@ -97,5 +122,11 @@ public class groups extends Fragment {
         }
 
         return group_frag;
+    }
+
+    public void open_group_dialog(){
+        dialog_group_create grp_dialog=new dialog_group_create();
+        MainActivity.dgc = grp_dialog;
+        grp_dialog.show(getFragmentManager(),"income popup");
     }
 }

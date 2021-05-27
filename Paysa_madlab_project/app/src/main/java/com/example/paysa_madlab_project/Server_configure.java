@@ -28,11 +28,19 @@ public class Server_configure {
         catch(SQLException sqlException){
             sqlException.printStackTrace();
         }
+        catch (Exception e){}
+    }
+    public static ResultSet execute_query(String query){
+        ResultSet rs=null;
+        try{
+            Statement statement=conn.createStatement();
+            rs=statement.executeQuery(query);
+            ResultSetMetaData rsmd=rs.getMetaData();
+        }
+        catch (SQLException sqlException){
+            sqlException.printStackTrace();
+        }
+        return rs;
     }
 
-    @Override
-    protected String doInBackground(String... strings) {
-        String result=null;
-        return null;
-    }
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="group_widget_style">
+        <item name="neumorph_cornerFamily">rounded</item>
+        <item name="neumorph_cornerSize">200dp</item>
+
+
+    </style>
+
+</resources>
