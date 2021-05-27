@@ -24,6 +24,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:hint="Enter amount"
+            android:background="@color/official_background_color"
             android:inputType="textPersonName"
             android:textColor="@color/actual_green"
             android:textColorHint="@color/hint_color"
@@ -31,6 +32,35 @@
             />
 
     </soup.neumorphism.NeumorphCardView>
+
+
+
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/neumorphCardView3"
+        android:layout_width="335dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginHorizontal="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.309">
+
+        <com.androidbuts.multispinnerfilter.MultiSpinnerSearch
+            android:id="@+id/multipleItemSelectionSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:background="@color/official_background_color"
+            app:hintText="split among"
+            app:textColor="@color/black"/>
+
+    </soup.neumorphism.NeumorphCardView>
+
+
+
+
 
 
 
