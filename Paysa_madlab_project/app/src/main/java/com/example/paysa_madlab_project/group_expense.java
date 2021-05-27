@@ -32,12 +32,12 @@ public class group_expense extends AppCompatDialogFragment{
     private static final String TAG ="spinner";
     NeumorphButton add_amount;
     Button cancel_add_amount;
-    EditText amount_to_be_paid;
+    EditText amount_spent;
     static TextView amt_in_debt;
-
 
      List<String> list= new ArrayList<String>();
 
+     ArrayList<String> selected = new ArrayList<String>();
     List<KeyPairBoolData> listArray = new ArrayList<KeyPairBoolData>();
 
     @Override
@@ -49,9 +49,10 @@ public class group_expense extends AppCompatDialogFragment{
 
         View view = inflater.inflate(R.layout.layout_group_expense, null);
 
+        String current_group = Group_detail.getGroup_name(Group_page.prev_view);
         try{
             Statement st = MainActivity.conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT email FROM Users");
+            ResultSet rs = st.executeQuery("SELECT email FROM GroupMembers WHERE group_name ='" + current_group + "'");
 
             while (rs.next()) {
                 list.add(rs.getString("email"));
@@ -101,11 +102,13 @@ public class group_expense extends AppCompatDialogFragment{
         multiSelectSpinnerWithSearch.setItems(listArray, new MultiSpinnerListener() {
             @Override
             public void onItemsSelected(List<KeyPairBoolData> items) {
+                ArrayList<String> tmp = new ArrayList<String>();
                 for (int i = 0; i < items.size(); i++) {
                     if (items.get(i).isSelected()) {
-                        Log.i(TAG, i + " : " + items.get(i).getName() + " : " + items.get(i).isSelected());
+                        tmp.add(items.get(i).getName());
                     }
                 }
+                selected = tmp;
             }
         });
 
@@ -116,14 +119,35 @@ public class group_expense extends AppCompatDialogFragment{
 
         add_amount=view.findViewById(R.id.add_amount);
         cancel_add_amount=view.findViewById(R.id.cancel_add_amount);
-        amount_to_be_paid=view.findViewById(R.id.amount_to_be_paid);
+        amount_spent=view.findViewById(R.id.amount_spent);
 
         add_amount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(amount_to_be_paid.getText().toString().length()>0){
-                    Float amt=Float.parseFloat(amt_in_debt.getText().toString())-Float.parseFloat(amount_to_be_paid.getText().toString());
-                    amt_in_debt.setText(amt.toString());
+                if(amount_spent.getText().toString().length()>0){
+                    double amount = Double.parseDouble(amount_spent.getText().toString());
+                    double equal_amount = 0.0;
+                    int length = selected.size();
+                    if (length > 0) {
+                        equal_amount = amount / (length * 1.0);
+                    }
+                    String equ = String.format("%.2f", equal_amount);
+                    try{
+                        Statement st = MainActivity.conn.createStatement();
+                        for (String x: selected) {
+                            if (x.compareTo(MainActivity.PaysaEmail) != 0) {
+                                System.out.println("INSERT INTO PaymentTracking VALUES('" + current_group + "', '"+ MainActivity.PaysaEmail +"','" + x +"', " + equ +")");
+                                int count = st.executeUpdate("INSERT INTO PaymentTracking VALUES('" + current_group + "', '"+ MainActivity.PaysaEmail +"','" + x +"', " + equ +")");
+                                if (count > 0) {
+                                    ;
+                                } else {
+                                    Toast.makeText(getContext(), "Failed to make payment to " + x, Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+                    } catch (Exception sqlException){
+                        sqlException.printStackTrace();
+                    }
                     Group_page.grp_expense.dismiss();
                 }
             }
