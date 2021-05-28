@@ -107,7 +107,7 @@ public class profile extends Fragment {
                     Toast.makeText(getContext(),"Password doesn't match",Toast.LENGTH_SHORT).show();
                 } else {
                     try{
-                        Statement st = Server_configure.conn.createStatement();//MainActivity.conn.createStatement();
+                        Statement st = MainActivity.conn.createStatement();
                         st.executeUpdate("UPDATE Users SET password = '" + a + "' WHERE email = '" + MainActivity.PaysaEmail + "'");
                         System.out.println("\n" + "UPDATE Users SET password = '" + a + "' WHERE email = '" + MainActivity.PaysaEmail + "'");
                         Toast.makeText(getContext(),"Success!",Toast.LENGTH_SHORT).show();
