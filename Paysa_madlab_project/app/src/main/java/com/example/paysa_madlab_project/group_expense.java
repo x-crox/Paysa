@@ -17,6 +17,7 @@ import com.androidbuts.multispinnerfilter.KeyPairBoolData;
 import com.androidbuts.multispinnerfilter.MultiSpinnerListener;
 import com.androidbuts.multispinnerfilter.MultiSpinnerSearch;
 
+
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class group_expense extends AppCompatDialogFragment{
     NeumorphButton add_amount;
     Button cancel_add_amount;
     EditText amount_spent;
-    static TextView amt_in_debt;
+    //static TextView amt_in_debt;
 
      List<String> list= new ArrayList<String>();
 

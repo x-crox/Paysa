@@ -28,7 +28,7 @@ public class Group_page extends AppCompatActivity{
     static dialog_participant_add dpa=null;
     static display_details disp_details=null;
     static group_expense grp_expense=null;
-    TextView amt_in_debt;
+    TextView group_name_in_group_page;
     NeumorphImageButton add_group_expense;
     static HashMap<View,String> view_to_participant_detail=new HashMap<View,String>();
 
@@ -43,10 +43,12 @@ public class Group_page extends AppCompatActivity{
 
         participant_add_button=findViewById(R.id.participant_add_button);
         participant_grid=findViewById(R.id.participant_grid);
-        amt_in_debt=findViewById(R.id.amt_in_debt);
+        group_name_in_group_page=findViewById(R.id.group_name_in_group_page);
         add_group_expense=findViewById(R.id.add_expense_button);
 
         String group_name=Group_detail.getGroup_name(prev_view);
+        group_name_in_group_page.setText(group_name);
+
         try{
             Statement st = MainActivity.conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT email FROM GroupMembers WHERE group_name = '" + Group_detail.getGroup_name(prev_view) + "'");
@@ -82,7 +84,7 @@ public class Group_page extends AppCompatActivity{
             public void onClick(View v) {
                 group_expense ge=new group_expense();
                 grp_expense=ge;
-                group_expense.amt_in_debt=amt_in_debt;
+                //group_expense.amt_in_debt=amt_in_debt;
                 ge.show(getSupportFragmentManager(),"launch group_expense dialog");
             }
         });

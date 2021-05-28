@@ -13,6 +13,7 @@ public class Group_detail {
     static HashMap<String,View> group_name_to_view=new HashMap<String,View>();
     static HashMap<View,String> view_to_group_name=new HashMap<View,String>();
 
+
     public static HashMap <View, ArrayList<String>> view_to_participant=new HashMap<View,ArrayList<String>>();
     public Group_detail(String group_id,Integer img_src){
         this.group_id=group_id;

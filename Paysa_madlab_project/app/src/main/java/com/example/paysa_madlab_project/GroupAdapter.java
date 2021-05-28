@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import androidx.annotation.NonNull;
@@ -40,6 +41,8 @@ public class GroupAdapter extends ArrayAdapter<Group_detail> {
         x.add(MainActivity.PaysaEmail);
         Group_detail.add_item(grid_item, x);
         ImageView group_dp =grid_item.findViewById(R.id.group_dp);
+        TextView group_name_textView=grid_item.findViewById(R.id.group_name_textview);
+        group_name_textView.setText(imgMap.getGroup_name());
         group_dp.setImageResource(imgMap.getImg_src());
         group_dp.setForegroundGravity(Gravity.CENTER);
         return grid_item;

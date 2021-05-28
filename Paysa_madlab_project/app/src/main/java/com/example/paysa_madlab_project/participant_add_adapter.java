@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +32,8 @@ public class participant_add_adapter extends ArrayAdapter<String> {
         String details=(String) getItem(position);
         Group_page.view_to_participant_detail.put(grid_item,details);
         ImageView group_dp =grid_item.findViewById(R.id.group_dp);
+        TextView participant_name=grid_item.findViewById(R.id.group_name_textview);
+        participant_name.setText(details);
         group_dp.setImageResource(R.drawable.ic_baseline_account_circle_24);
         group_dp.setForegroundGravity(Gravity.CENTER);
         return grid_item;

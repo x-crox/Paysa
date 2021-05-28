@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.41" />
 
     <soup.neumorphism.NeumorphCardView
-        android:layout_width="250dp"
+        android:layout_width="320dp"
         android:layout_height="200dp"
         app:neumorph_lightSource="leftTop"
         app:neumorph_shapeAppearance="@style/group_widget_style"
@@ -34,7 +34,7 @@
         app:neumorph_shadowElevation="7dp"
         >
         <soup.neumorphism.NeumorphCardView
-            android:layout_width="170dp"
+            android:layout_width="220dp"
             android:layout_height="85dp"
             android:layout_marginVertical="75dp"
             android:layout_gravity="center"
@@ -42,31 +42,16 @@
             app:neumorph_lightSource="leftTop"
             app:neumorph_shadowElevation="8dp"
             >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="6dp"
+            <TextView
+                android:id="@+id/group_name_in_group_page"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
-                >
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="left|center_vertical"
-                    android:layout_marginHorizontal="10dp"
-                    android:src="@drawable/ic_debt_symbol"
-                    />
-                <TextView
-                    android:id="@+id/amt_in_debt"
-                    android:layout_width="80dp"
-                    android:layout_height="30dp"
-                    android:text="100000.00"
-                    android:layout_gravity="right|center"
-                    android:textColor="@color/actual_dark_green"
-
-                    android:textSize="15dp"
-                    android:textFontWeight="500"
-                    />
-            </LinearLayout>
+                android:textColor="@color/actual_green"
+                android:textSize="25dp"
+                android:fontFamily="sans-serif-medium"
+                android:textFontWeight="900"
+                />
 
         </soup.neumorphism.NeumorphCardView>
     </soup.neumorphism.NeumorphCardView>

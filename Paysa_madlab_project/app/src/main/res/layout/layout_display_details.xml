@@ -32,15 +32,38 @@
         android:textFontWeight="500"
         />
 
-    <TextView
-        android:id="@+id/status_id"
+    <soup.neumorphism.NeumorphCardView
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_margin="@dimen/dimen_40dp"
-        android:textColor="@color/actual_dark_green"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="35dp"
         android:layout_marginBottom="50dp"
-        android:textAlignment="center"
-        android:textSize="25dp"
-        android:textFontWeight="500"
-        />
+        >
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <ImageView
+                android:id="@+id/owe_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_square_off"
+                />
+            <TextView
+                android:id="@+id/status_id"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_margin="@dimen/dimen_20dp"
+                android:textColor="@color/actual_green"
+                android:layout_marginBottom="50dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:textSize="21dp"
+                android:textFontWeight="700"
+                />
+        </LinearLayout>
+    </soup.neumorphism.NeumorphCardView>
+
 </TableLayout>
